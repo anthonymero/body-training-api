@@ -1,17 +1,17 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class Set {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    firstName: string;
+    nbReps: number;
 
     @Column()
-    lastName: string;
+    weight: number;
 
     @Column()
-    email: string;
+    recovery: number;
 
 }

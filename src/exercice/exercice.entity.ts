@@ -1,17 +1,17 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class Exercice {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    firstName: string;
+    name: string;
 
     @Column()
-    lastName: string;
+    category: string;
 
     @Column()
-    email: string;
+    difficulty: string;
 
 }
