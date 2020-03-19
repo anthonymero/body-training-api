@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { TrainingSessionModule } from './training-session/training-session.module';
 import { SetModule } from './set/set.module';
 import { ExerciceModule } from './exercice/exercice.module';
+import { PhysicalDataModule } from './physical-data/physical-data.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ExerciceModule } from './exercice/exercice.module';
     TrainingSessionModule,
     SetModule,
     ExerciceModule,
+    PhysicalDataModule,
   ],
   controllers: [AppController],
   providers: [AppService],
