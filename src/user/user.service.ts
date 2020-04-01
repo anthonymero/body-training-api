@@ -37,18 +37,18 @@ export class UserService {
     }
 
     // Update User
-    async updateUser(id: number, user: Partial<User>): Promise<void> {
-        const userToUpdate = await this.findOneById(id);
+    async updateUser(id: string, user: Partial<User>): Promise<void> {
+        const userToUpdate = await this.findOneById(+id);
         if (!userToUpdate) {
-            await this.userRepository.update(id, user);
+            await this.userRepository.update(+id, user);
         } else {
             throw new Error(' User does not exist');
         }
     }
 
     // Remove User
-    async removeUser(id: number): Promise<void> {
-        const userToRemove = await this.findOneById(id);
+    async removeUser(id: string): Promise<void> {
+        const userToRemove = await this.findOneById(+id);
         await this.userRepository.delete(userToRemove);
     }
 }
