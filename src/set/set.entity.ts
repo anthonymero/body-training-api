@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Exercice } from 'src/exercice/exercice.entity';
+import { Exercice } from '../exercice/exercice.entity';
 
 @Entity()
 export class Set {

@@ -23,9 +23,11 @@ export class UserService {
 
     // Create User
     async createUser(userData): Promise<User> {
+        // Todo create helper to
+        // Check if user does not allready exists by email
         const newUser = this.userRepository.create({
             firstName: userData.firstName,
-            lastName: userData.firstName,
+            lastName: userData.lastName,
             age: userData.age,
             size: userData.size,
             email: userData.email,

@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { PhysicalData } from '../physical-data/physical-data.entity';
-import { TrainingSession } from 'src/training-session/training-session.entity';
+import { TrainingSession } from '../training-session/training-session.entity';
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
@@ -12,6 +12,7 @@ export class User {
     @Column()
     lastName: string;
 
+    // Todo date of birth -> age
     @Column()
     age: number;
 

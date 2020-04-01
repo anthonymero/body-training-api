@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
-import { User } from 'src/user/user.entity';
-import { Exercice } from 'src/exercice/exercice.entity';
+import { User } from '../user/user.entity';
+import { Exercice } from '../exercice/exercice.entity';
 
 @Entity()
 export class TrainingSession {
