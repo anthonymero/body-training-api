@@ -18,8 +18,8 @@ export class UserService {
     }
 
     // Find user by id
-    async findOneById(id: string): Promise<IUser> {
-        return await this.userRepository.findOne(id);
+    async findOneById(id: number): Promise<IUser> {
+        return await this.userRepository.findOne(+id);
     }
 
     // Create User
@@ -39,7 +39,7 @@ export class UserService {
 
     // Update User
     async updateUser(id: string, user: Partial<User>): Promise<void> {
-        const userToUpdate = await this.findOneById(id);
+        const userToUpdate = await this.findOneById(+id);
         if (!userToUpdate) {
             await this.userRepository.update(+id, user);
         } else {
@@ -49,7 +49,7 @@ export class UserService {
 
     // Remove User
     async removeUser(id: string): Promise<void> {
-        const userToRemove = await this.findOneById(id);
+        const userToRemove = await this.findOneById(+id);
         await this.userRepository.delete(userToRemove);
     }
 }

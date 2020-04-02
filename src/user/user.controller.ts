@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Param, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Delete, UsePipes } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
 import { IUser } from './user.interface';
+import { ValidationPipe } from './../common/pipes/validation.pipe';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 export class UserController {
@@ -11,10 +13,9 @@ export class UserController {
     ) { }
 
     @Get(':id')
-    // async findOne(@Param('id') id: string): Promise<User> {
-    // return await this.userService.findOneById(id);
-    async findOne(@Param('id') id: string) {
-        return (id);
+    async findOne(@Param('id') id: string): Promise<IUser> {
+    return await this.userService.findOneById(+id);
+
     }
 
     @Get()
@@ -22,9 +23,11 @@ export class UserController {
         return await this.userService.findAll();
     }
 
+    // Create new user
     @Post()
-    async create(@Body() userData: any): Promise<IUser> {
-        return await this.userService.createUser(userData);
+    @UsePipes(new ValidationPipe())
+    async create(@Body() createUserDto: CreateUserDto): Promise<IUser> {
+        return await this.userService.createUser(createUserDto);
     }
 
     @Patch(':id')
