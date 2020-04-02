@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
+import { IUser } from './user.interface';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -12,17 +13,17 @@ export class UserService {
     ) { }
 
     // FindAll users
-    async findAll(): Promise<User[]> {
+    async findAll(): Promise<IUser[]> {
         return await this.userRepository.find();
     }
 
     // Find user by id
-    async findOneById(id: number): Promise<User> {
+    async findOneById(id: string): Promise<IUser> {
         return await this.userRepository.findOne(id);
     }
 
     // Create User
-    async createUser(userData): Promise<User> {
+    async createUser(userData): Promise<IUser> {
         // Todo create helper to
         // Check if user does not allready exists by email
         const newUser = this.userRepository.create({
@@ -38,7 +39,7 @@ export class UserService {
 
     // Update User
     async updateUser(id: string, user: Partial<User>): Promise<void> {
-        const userToUpdate = await this.findOneById(+id);
+        const userToUpdate = await this.findOneById(id);
         if (!userToUpdate) {
             await this.userRepository.update(+id, user);
         } else {
@@ -48,7 +49,7 @@ export class UserService {
 
     // Remove User
     async removeUser(id: string): Promise<void> {
-        const userToRemove = await this.findOneById(+id);
+        const userToRemove = await this.findOneById(id);
         await this.userRepository.delete(userToRemove);
     }
 }
