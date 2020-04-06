@@ -12,17 +12,6 @@ export class UserController {
         private readonly userService: UserService,
     ) { }
 
-    @Get(':id')
-    async findOne(@Param('id') id: string): Promise<IUser> {
-    return await this.userService.findOneById(+id);
-
-    }
-
-    @Get()
-    async findAll(): Promise<IUser[]> {
-        return await this.userService.findAll();
-    }
-
     // Create new user
     @Post()
     @UsePipes(new ValidationPipe())
@@ -30,8 +19,19 @@ export class UserController {
         return await this.userService.createUser(createUserDto);
     }
 
+    @Get()
+    async findAll(): Promise<IUser[]> {
+        return await this.userService.findAll();
+    }
+
+    @Get(':id')
+    async findOne(@Param('id') id: string): Promise<IUser> {
+        return await this.userService.findOneById(+id);
+
+    }
+
     @Patch(':id')
-    async updateUser(@Param('id') id: string, @Body() userToUpdate: Partial<User>): Promise<void> {
+    async updateUser(@Param('id') id: string, @Body() userToUpdate: CreateUserDto): Promise<void> {
         return await this.userService.updateUser(id, userToUpdate);
     }
 

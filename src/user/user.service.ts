@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { IUser } from './user.interface';
 import { Repository } from 'typeorm';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
@@ -23,24 +24,24 @@ export class UserService {
     }
 
     // Create User
-    async createUser(userData): Promise<IUser> {
+    async createUser(createUserDto: CreateUserDto): Promise<IUser> {
         // Todo create helper to
         // Check if user does not allready exists by email
-        const newUser = this.userRepository.create({
-            firstName: userData.firstName,
-            lastName: userData.lastName,
-            age: userData.age,
-            size: userData.size,
-            email: userData.email,
+        const newUser: IUser = this.userRepository.create({
+            firstName: createUserDto.firstName,
+            lastName: createUserDto.lastName,
+            age: createUserDto.age,
+            size: createUserDto.size,
+            email: createUserDto.email,
         });
         await this.userRepository.save(newUser);
         return newUser;
     }
 
     // Update User
-    async updateUser(id: string, user: Partial<User>): Promise<void> {
+    async updateUser(id: string, user: CreateUserDto): Promise<void> {
         const userToUpdate = await this.findOneById(+id);
-        if (!userToUpdate) {
+        if (!!userToUpdate) {
             await this.userRepository.update(+id, user);
         } else {
             throw new Error(' User does not exist');
