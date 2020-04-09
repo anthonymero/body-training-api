@@ -4,18 +4,18 @@ import { Exercice } from '../exercice/exercice.entity';
 @Entity()
 export class Set {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column()
-    nbReps: number;
+    nbReps!: number;
 
     @Column()
-    weight: number;
+    weight!: number;
 
     @Column()
-    recovery: number;
+    recovery!: number;
 
     @ManyToOne(type => Exercice, exercice => exercice.sets)
-    exercice: Exercice;
+    exercice!: Exercice;
 
 }

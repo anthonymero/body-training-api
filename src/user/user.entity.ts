@@ -12,14 +12,13 @@ export class User {
     @Column()
     lastName: string;
 
-    // Todo date of birth -> age
     @Column()
     age: number;
 
     @Column()
     size: number;
 
-    @Column()
+    @Column({unique: true})
     email: string;
 
     @OneToMany(type => PhysicalData, physicalData => physicalData.user)

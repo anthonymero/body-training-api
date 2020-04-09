@@ -5,21 +5,21 @@ import { Exercice } from '../exercice/exercice.entity';
 @Entity()
 export class TrainingSession {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column()
-    date: Date;
+    date!: Date;
 
     @Column()
-    duration: number;
+    duration?: number;
 
     @Column()
-    type: string;
+    type!: string;
 
     @ManyToOne(type => User, user => user.trainingSessions)
-    user: User;
+    user!: User;
 
     @OneToMany(type => Exercice, exercice => exercice.trainingSession)
-    exercices: Exercice[];
+    exercices!: Exercice[];
 
 }

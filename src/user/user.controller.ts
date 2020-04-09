@@ -15,7 +15,7 @@ export class UserController {
     // Create new user
     @Post()
     @UsePipes(new ValidationPipe())
-    async create(@Body() createUserDto: CreateUserDto): Promise<IUser> {
+    async create(@Body() createUserDto: CreateUserDto): Promise<User> {
         return await this.userService.createUser(createUserDto);
     }
 
@@ -25,7 +25,7 @@ export class UserController {
     }
 
     @Get(':id')
-    async findOne(@Param('id') id: string): Promise<IUser> {
+    async findOne(@Param('id') id: string): Promise<User> {
         return await this.userService.findOneById(+id);
 
     }

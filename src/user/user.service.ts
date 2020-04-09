@@ -15,19 +15,19 @@ export class UserService {
 
     // FindAll users
     async findAll(): Promise<IUser[]> {
-        return await this.userRepository.find();
+        return await this.userRepository.find() as IUser[];
     }
 
     // Find user by id
-    async findOneById(id: number): Promise<IUser> {
-        return await this.userRepository.findOne(+id);
+    async findOneById(id: number): Promise<User> {
+        return await this.userRepository.findOneOrFail(+id);
     }
 
     // Create User
-    async createUser(createUserDto: CreateUserDto): Promise<IUser> {
+    async createUser(createUserDto: CreateUserDto): Promise<User> {
         // Todo create helper to
         // Check if user does not allready exists by email
-        const newUser: IUser = this.userRepository.create({
+        const newUser: User = this.userRepository.create({
             firstName: createUserDto.firstName,
             lastName: createUserDto.lastName,
             age: createUserDto.age,

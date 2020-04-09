@@ -1,24 +1,26 @@
 import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
-import { TrainingSession } from 'src/training-session/training-session.entity';
+import { TrainingSession } from '../training-session/training-session.entity';
 import { Set } from '../set/set.entity';
 @Entity()
 export class Exercice {
     @PrimaryGeneratedColumn()
-    id: number;
+    id!: number;
 
     @Column()
-    name: string;
+    name!: string;
 
     @Column()
-    category: string;
+    // Todo category enum (pecs, dos, epaules, biceps, triceps, cuisses, mollets ...)
+    category?: string;
 
     @Column()
-    difficulty: string;
+    // Todo enum hardness ( rookie, easy, medium, hard)
+    hardness?: string;
 
     @ManyToOne(type => TrainingSession, trainingSession => trainingSession.exercices)
-    trainingSession: TrainingSession;
+    trainingSession?: TrainingSession;
 
     @OneToMany(type => Set, set => set.exercice)
-    sets: Set[];
+    sets?: Set[];
 
 }

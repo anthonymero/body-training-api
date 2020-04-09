@@ -4,14 +4,14 @@ import { User } from '../user/user.entity';
 @Entity()
 export class PhysicalData {
     @PrimaryColumn()
-    id: number;
+    id!: number;
 
     @Column()
-    date: Date;
+    date!: Date;
 
     @Column()
-    weight: number;
+    weight!: number;
 
     @ManyToOne(type => User, user => user.physicalDatas)
-    user: User;
+    user!: User;
 }
