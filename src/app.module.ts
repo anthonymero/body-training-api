@@ -13,9 +13,9 @@ import { PhysicalDataModule } from './physical-data/physical-data.module';
   imports: [
     TypeOrmModule.forRoot(),
     UserModule,
+    ExerciceModule,
     TrainingSessionModule,
     SetModule,
-    ExerciceModule,
     PhysicalDataModule,
   ],
   controllers: [AppController],
