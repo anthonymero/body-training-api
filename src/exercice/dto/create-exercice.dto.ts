@@ -1,14 +1,14 @@
 import { IsString, IsInt } from 'class-validator';
+import { ExerciceCategory } from '../models/exercice-category.enum';
+import { ExerciceHardness } from '../models/exercice-hardness.enum';
 
 export class CreateExerciceDto {
     @IsString()
     readonly name: string;
 
-    // Todo category enum []
     @IsString()
-    readonly category?: string;
+    readonly category?: ExerciceCategory;
 
-    // Todo hardness enum
     @IsString()
-    readonly hardness?: string;
+    readonly hardness?: ExerciceHardness;
 }

@@ -19,17 +19,17 @@ export class ExerciceController {
         return await this.exerciceService.findAll();
     }
 
-    @Get('id')
+    @Get(':id')
     async findOneById(@Param('id') id: string ): Promise<Exercice> {
         return await this.exerciceService.findOneById(+id);
     }
 
-    @Patch('id')
+    @Patch(':id')
     async update(@Param('id') id: string, @Body() exerciceToUpdate: CreateExerciceDto): Promise<void> {
         return await this.exerciceService.updateExercice(+id, exerciceToUpdate);
     }
 
-    @Delete('id')
+    @Delete(':id')
     async deleteExercice(@Param('id') id: string): Promise<void> {
         return await this.exerciceService.removeExercice(+id);
     }

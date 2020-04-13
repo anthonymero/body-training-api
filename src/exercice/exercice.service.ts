@@ -21,7 +21,7 @@ export class ExerciceService {
         return await this.exerciceRepository.findOneOrFail(id);
     }
 
-    // Find exercices by ...
+    // Find exercices by ... category, name, hardness
 
     // Create a new exercice
     async createExercice(createExerciceDto: CreateExerciceDto): Promise<Exercice> {
