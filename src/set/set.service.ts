@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Set } from './set.entity';
+import { CreateSetDto } from './dto/create-set.dto';
 
 @Injectable()
 export class SetService {
@@ -12,11 +13,11 @@ export class SetService {
 
     // Create new set
     // Todo create createSetDto
-    async createSet(set: any): Promise<Set> {
+    async createSet(createSetDto: CreateSetDto): Promise<Set> {
         const newSet: Set = this.setRepository.create({
-            nbReps: set.nbReps,
-            weight: set.weight,
-            recovery: set.recovery,
+            nbReps: createSetDto.nbReps,
+            weight: createSetDto.weight,
+            recovery: createSetDto.recovery,
         });
         await this.setRepository.save(newSet);
         return newSet;
@@ -28,10 +29,10 @@ export class SetService {
     }
 
     // Update set
-    async updateSet(id: string): Promise<void> {
+    async updateSet(id: string, set: CreateSetDto): Promise<void> {
         const setToUpdate = await this.findOneSet(id);
         if (!!setToUpdate) {
-            await this.setRepository.update(id, setToUpdate);
+            await this.setRepository.update(id, set);
         } else {
             throw new Error('set does not exist');
         }
