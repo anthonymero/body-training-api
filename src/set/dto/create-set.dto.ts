@@ -1,4 +1,4 @@
-import { IsString, IsInt } from 'class-validator';
+import { IsInt } from 'class-validator';
 
 export class CreateSetDto {
     @IsInt()
@@ -9,5 +9,8 @@ export class CreateSetDto {
 
     @IsInt()
     readonly recovery: number;
+
+    @IsInt()
+    readonly exerciceId: number;
 
 }

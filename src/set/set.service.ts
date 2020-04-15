@@ -3,21 +3,25 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Set } from './set.entity';
 import { CreateSetDto } from './dto/create-set.dto';
+import { ExerciceService } from 'exercice/exercice.service';
+import { Exercice } from 'exercice/exercice.entity';
 
 @Injectable()
 export class SetService {
     constructor(
         @InjectRepository(Set)
         private readonly setRepository: Repository<Set>,
+        private readonly exerciceService: ExerciceService,
     ) { }
 
     // Create new set
-    // Todo create createSetDto
     async createSet(createSetDto: CreateSetDto): Promise<Set> {
+        const exercice: Exercice = await this.exerciceService.findOneById(createSetDto.exerciceId);
         const newSet: Set = this.setRepository.create({
             nbReps: createSetDto.nbReps,
             weight: createSetDto.weight,
             recovery: createSetDto.recovery,
+            exercice,
         });
         await this.setRepository.save(newSet);
         return newSet;

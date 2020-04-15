@@ -10,5 +10,6 @@ import { Exercice } from './exercice.entity';
   ],
   controllers: [ExerciceController],
   providers: [ExerciceService],
+  exports: [ExerciceService],
 })
 export class ExerciceModule { }

@@ -15,7 +15,7 @@ export class Set {
     @Column()
     recovery!: number;
 
-    @ManyToOne(type => Exercice, exercice => exercice.sets)
+    @ManyToOne(() => Exercice, exercice => exercice.sets)
     exercice!: Exercice;
 
 }
