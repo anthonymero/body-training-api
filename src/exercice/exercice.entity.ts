@@ -20,7 +20,7 @@ export class Exercice {
     @ManyToOne(type => TrainingSession, trainingSession => trainingSession.exercices)
     trainingSession?: TrainingSession;
 
-    @OneToMany(type => Set, set => set.exercice)
+    @OneToMany(() => Set, (set) => set.exercice)
     sets?: Set[];
 
 }
