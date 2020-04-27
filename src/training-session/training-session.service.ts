@@ -19,7 +19,7 @@ export class TrainingSessionService {
     // FindAll user training sessions by user id
 
     // Find training session by id
-    async findOneById(id: number): Promise<TrainingSession> {
+    async findOneById(id: string): Promise<TrainingSession> {
         return await this.trainingSessionRepository.findOneOrFail(id);
     }
 
@@ -43,7 +43,7 @@ export class TrainingSessionService {
 
     // Remove training session
     async removeTrainingSession(id: string): Promise<void> {
-        const trainingSessionToRemove = await this.findOneById(+id);
+        const trainingSessionToRemove = await this.findOneById(id);
         await this.trainingSessionRepository.delete(trainingSessionToRemove);
     }
 
