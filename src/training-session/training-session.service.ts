@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TrainingSession } from './training-session.entity';
 import { Repository } from 'typeorm';
+import { CreateTrainingSessionDto } from './dto/create-training-session.dto';
 
 @Injectable()
 export class TrainingSessionService {
@@ -23,16 +24,14 @@ export class TrainingSessionService {
     }
 
     // Create training session
-    // TODO create createTrainingSessionDto
-    async createTrainingSession(createTrainingSessionDto): Promise<TrainingSession> {
+    async createTrainingSession(createTrainingSessionDto: CreateTrainingSessionDto): Promise<TrainingSession> {
         const newTrainingSession: TrainingSession = this.trainingSessionRepository.create(createTrainingSessionDto);
         await this.trainingSessionRepository.save(newTrainingSession);
         return newTrainingSession;
     }
 
     // Update training session
-    // TODO create createTrainingSessionDto
-    async updateTrainingSession(id: string, trainingSession): Promise<void> {
+    async updateTrainingSession(id: string, trainingSession: CreateTrainingSessionDto): Promise<void> {
         const trainingSessionToUpdate = await this.findOneById(+id);
         if (!!trainingSessionToUpdate) {
             this.trainingSessionRepository.update(id, trainingSession);
