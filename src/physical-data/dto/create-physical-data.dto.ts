@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsDate } from 'class-validator';
+import { IsDate, IsInt } from 'class-validator';
 
 export class CreatePhysicalDataDto {
     @IsDate()
