@@ -1,9 +1,9 @@
-import { Column, Entity, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { User } from '../user/user.entity';
 
 @Entity()
 export class PhysicalData {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     id!: number;
 
     @Column()
