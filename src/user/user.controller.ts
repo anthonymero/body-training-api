@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Patch, Delete, UsePipes } from '@ne
 import { UserService } from './user.service';
 import { User } from './user.entity';
 import { IUser } from './user.interface';
-import { ValidationPipe } from './../common/pipes/validation.pipe';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
@@ -31,6 +31,7 @@ export class UserController {
     }
 
     @Patch(':id')
+    @UsePipes(new ValidationPipe())
     async updateUser(@Param('id') id: string, @Body() userToUpdate: CreateUserDto): Promise<void> {
         return await this.userService.updateUser(id, userToUpdate);
     }

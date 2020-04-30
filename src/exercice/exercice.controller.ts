@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Param, Put, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Patch, Delete, UsePipes } from '@nestjs/common';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { ExerciceService } from './exercice.service';
 import { Exercice } from './exercice.entity';
 import { CreateExerciceDto } from './dto/create-exercice.dto';
@@ -10,6 +11,7 @@ export class ExerciceController {
     ) { }
 
     @Post()
+    @UsePipes(new ValidationPipe())
     async create(@Body() createExerciceDto: CreateExerciceDto): Promise<Exercice> {
         return await this.exerciceService.createExercice(createExerciceDto);
     }
@@ -25,6 +27,7 @@ export class ExerciceController {
     }
 
     @Patch(':id')
+    @UsePipes(new ValidationPipe())
     async update(@Param('id') id: string, @Body() exerciceToUpdate: CreateExerciceDto): Promise<void> {
         return await this.exerciceService.updateExercice(+id, exerciceToUpdate);
     }
