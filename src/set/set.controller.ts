@@ -1,4 +1,5 @@
-import { Controller, Post, Body, Get, Param, Patch, Delete } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Patch, Delete, UsePipes } from '@nestjs/common';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { SetService } from './set.service';
 import { CreateSetDto } from './dto/create-set.dto';
 import { Set } from './set.entity';
@@ -10,6 +11,7 @@ export class SetController {
     ) {}
 
     @Post()
+    @UsePipes(new ValidationPipe())
     async create(@Body() createSetDto: CreateSetDto): Promise<Set> {
         return await this.setService.createSet(createSetDto);
     }
@@ -20,6 +22,7 @@ export class SetController {
     }
 
     @Patch(':id')
+    @UsePipes(new ValidationPipe())
     async update(@Param('id') id: string, @Body() setToUpdate: CreateSetDto): Promise<void> {
         return await this.setService.updateSet(id, setToUpdate);
     }

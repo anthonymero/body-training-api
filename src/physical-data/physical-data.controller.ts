@@ -1,4 +1,5 @@
-import { Controller, Post, Get, Body, Param, Patch, Delete } from '@nestjs/common';
+import { Controller, Post, Get, Body, Param, Patch, Delete, UsePipes } from '@nestjs/common';
+import { ValidationPipe } from '../common/pipes/validation.pipe';
 import { PhysicalDataService } from './physical-data.service';
 import { CreatePhysicalDataDto } from './dto/create-physical-data.dto';
 import { PhysicalData } from './physical-data.entity';
@@ -10,6 +11,7 @@ export class PhysicalDataController {
     ) { }
 
     @Post()
+    @UsePipes(new ValidationPipe())
     async create(@Body() createPhysicalDataDto: CreatePhysicalDataDto): Promise<PhysicalData> {
         return await this.physicalDataService.createPhysicalData(createPhysicalDataDto);
     }
@@ -25,6 +27,7 @@ export class PhysicalDataController {
     }
 
     @Patch(':id')
+    @UsePipes(new ValidationPipe())
     async update(@Param('id') id: string, @Body() updatedPhysicalData: CreatePhysicalDataDto): Promise<void> {
         return await this.physicalDataService.updatePhysicalData(id, updatedPhysicalData);
     }
