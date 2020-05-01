@@ -1,4 +1,4 @@
-import { IsString, IsInt } from 'class-validator';
+import { IsString, IsInt, IsEmail } from 'class-validator';
 
 export class CreateUserDto {
     @IsString()
@@ -13,7 +13,7 @@ export class CreateUserDto {
     @IsInt()
     readonly size: number;
 
-    @IsString()
+    @IsEmail()
     readonly email: string;
 
 }
