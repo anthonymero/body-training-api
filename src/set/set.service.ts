@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Set } from './set.entity';
 import { CreateSetDto } from './dto/create-set.dto';
-import { ExerciceService } from 'exercice/exercice.service';
-import { Exercice } from 'exercice/exercice.entity';
+import { ExerciceService } from '../exercice/exercice.service';
+import { Exercice } from '../exercice/exercice.entity';
 
 @Injectable()
 export class SetService {

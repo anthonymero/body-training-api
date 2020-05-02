@@ -3,8 +3,8 @@ import { Repository } from 'typeorm';
 import { CreatePhysicalDataDto } from './dto/create-physical-data.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PhysicalData } from './physical-data.entity';
-import { UserService } from 'user/user.service';
-import { User } from 'user/user.entity';
+import { UserService } from '../user/user.service';
+import { User } from '../user/user.entity';
 
 @Injectable()
 export class PhysicalDataService {
