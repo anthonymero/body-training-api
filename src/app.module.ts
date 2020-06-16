@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { AuthenticationMiddleware } from './common/authentication.middleware';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -21,4 +22,10 @@ import { PhysicalDataModule } from './physical-data/physical-data.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {
+  public configure(consumer: MiddlewareConsumer): void | MiddlewareConsumer {
+    consumer
+      .apply(AuthenticationMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
